@@ -47,9 +47,14 @@ function displayInfo(country) {
   const countryInfo = document.querySelector('#info')
   const infoBody = countryInfo.querySelector('#info-body')
   const countryImage = countryInfo.querySelector('img')
+  countryImage.style.maxHeight = "250px"
   countryImage.src = country.flag
   infoBody.innerHTML = `
-        <h2>${country.name}</h2>
+        <h2 class="mt-sm-3">
+        ${country.name}
+        </h2>
+        <div class="mt-sm-5 d-flex m-auto justify-content-around">
+        <div>
         <p>
             <strong>Native Name:</strong>
             ${country.nativeName}
@@ -70,6 +75,16 @@ function displayInfo(country) {
             <strong>Capital:</strong>
             ${country.capital}
         </p>
+        <div class = "d-flex m-auto justify-content-between ">
+        Border Countries:
+         <button  id="close">
+        button
+        <i class="fas fa-times"></i>
+        </button>
+        </div>
+        </div>
+        
+        <div>
         <p>
             <strong>Top Level Domain:</strong>
             ${country.topLevelDomain[0]}
@@ -82,5 +97,7 @@ function displayInfo(country) {
             <strong>Languages:</strong>
             ${country.languages.map((language) => language.name)}
         </p>
+        </div>
+        </div>
     `
 }
