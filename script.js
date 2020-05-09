@@ -121,8 +121,8 @@ function findCountry() {
   const inputValue = search.value.toLowerCase()
   const pages = document.querySelectorAll('.page')
   pages.forEach((ele) => {
-    if (ele.innerText.toLowerCase().indexOf(inputValue) >= 0) {
-      ele.style.display = 'flex'
+    if (ele.innerText.toLowerCase().indexOf(inputValue) > -1) {
+      ele.style.display = 'block'
     } else {
       ele.style.display = 'none'
     }
@@ -137,7 +137,7 @@ continents.forEach((menu) => {
     const countryRegion = document.querySelectorAll('.page')
     countryRegion.forEach((region) => {
       if (region.innerText.includes(value)) {
-        region.style.display = 'flex'
+        region.style.display = 'block'
       } else {
         region.style.display = 'none'
       }
@@ -146,7 +146,7 @@ continents.forEach((menu) => {
 })
 // back button
 const backButton = document.querySelector('#backButton')
-backButton.addEventListener('click', () => {
+ backButton.addEventListener('click', () => {
   backButton.style.display = 'none'
   document.querySelector('#info').style.display = 'none'
   document.querySelector('#show').style.visibility = "block"
