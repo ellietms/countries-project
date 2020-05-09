@@ -1,10 +1,16 @@
 const search = document.querySelector('#searchInput')
 const rootElm = document.querySelector('#root')
 const url = `https://restcountries.eu/rest/v2/all`
-fetch(url)
-  .then((response) => response.json())
-  .then((data) => makePageForCountries(data))
-  .catch((error) => console.log(error))
+window.onload = setup
+function setup() {
+  getData()
+}
+function getData() {
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => makePageForCountries(data))
+    .catch((error) => console.log(error))
+}
 let countries
 function makePageForCountries(countriesData) {
   countries = countriesData
@@ -45,8 +51,7 @@ function makePageForCountries(countriesData) {
   }
 }
 function displayInfo(country) {
-  console.log(country)
-  document.querySelector('#show').style.display = 'none'
+  document.querySelector('#show').style.display = "none"
   const countryInfo = document.querySelector('#info')
   const infoBody = countryInfo.querySelector('#info-body')
   const countryImage = countryInfo.querySelector('img')
@@ -107,8 +112,8 @@ function findBorder(border) {
   })
 }
 function findCountryName(alphaCode) {
-  console.log(countries)
-  console.log(countries.find((country) => country.alpha3code == alphaCode))
+  //console.log(countries)
+  // console.log(countries.find((country) => country.alpha3code == alphaCode))
 }
 // search Input
 search.addEventListener('input', findCountry)
@@ -116,7 +121,7 @@ function findCountry() {
   const inputValue = search.value.toLowerCase()
   const pages = document.querySelectorAll('.page')
   pages.forEach((ele) => {
-    if (ele.innerText.toLowerCase().indexOf(inputValue) >=0) {
+    if (ele.innerText.toLowerCase().indexOf(inputValue) >= 0) {
       ele.style.display = 'flex'
     } else {
       ele.style.display = 'none'
@@ -125,7 +130,7 @@ function findCountry() {
 }
 // filter by continent
 const menu = document.querySelector('.dropdown-menu')
-const continents =document.querySelectorAll('.dropdown-item')
+const continents = document.querySelectorAll('.dropdown-item')
 continents.forEach((menu) => {
   menu.addEventListener('click', () => {
     const value = menu.innerText
@@ -138,4 +143,12 @@ continents.forEach((menu) => {
       }
     })
   })
+})
+// back button
+const backButton = document.querySelector('#backButton')
+backButton.addEventListener('click', () => {
+  backButton.style.display = 'none'
+  document.querySelector('#info').style.display = 'none'
+  document.querySelector('#show').style.visibility = "block"
+  getData()
 })
