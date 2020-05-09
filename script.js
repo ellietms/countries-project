@@ -1,15 +1,17 @@
+const search = document.querySelector('#searchInput')
 const rootElm = document.querySelector('#root')
 const url = `https://restcountries.eu/rest/v2/all`
 fetch(url)
   .then((response) => response.json())
   .then((data) => makePageForCountries(data))
   .catch((error) => console.log(error))
+let countries
 function makePageForCountries(countriesData) {
-  const countries = countriesData
+  countries = countriesData
   for (let i = 0; i < countries.length; i++) {
     let divResponsive = document.createElement('div')
     divResponsive.className +=
-      'col-sm-12 col-md-4 col-lg-3 mb-sm-2 mb-md-2 mt-md-3 mb-lg-3 mt-lg-3 p-2'
+      'col-sm-12 col-md-4 col-lg-3 mb-sm-2 mb-md-2 mt-md-3 mb-lg-3 mt-lg-3 p-2 page'
     let countryCard = document.createElement('div')
     countryCard.className = 'card'
     let flag = document.createElement('img')
@@ -43,17 +45,18 @@ function makePageForCountries(countriesData) {
   }
 }
 function displayInfo(country) {
+  console.log(country)
   document.querySelector('#show').style.display = 'none'
   const countryInfo = document.querySelector('#info')
   const infoBody = countryInfo.querySelector('#info-body')
   const countryImage = countryInfo.querySelector('img')
-  countryImage.style.maxHeight = "250px"
+  countryImage.className = 'countryImg'
   countryImage.src = country.flag
   infoBody.innerHTML = `
         <h2 class="mt-sm-3">
         ${country.name}
         </h2>
-        <div class="mt-sm-5 d-flex m-auto justify-content-around">
+        <div class="mt-sm-5 d-flex m-auto justify-content-center">
         <div>
         <p>
             <strong>Native Name:</strong>
@@ -75,15 +78,11 @@ function displayInfo(country) {
             <strong>Capital:</strong>
             ${country.capital}
         </p>
-        <div class = "d-flex m-auto justify-content-between ">
-        Border Countries:
-         <button  id="close">
-        button
-        <i class="fas fa-times"></i>
-        </button>
+        <div class = "d-flex m-auto">
+        <p class="d-flex"> <strong>Border Countries:</strong> <p>
+         ${findBorder(country.borders)}
         </div>
         </div>
-        
         <div>
         <p>
             <strong>Top Level Domain:</strong>
@@ -101,3 +100,42 @@ function displayInfo(country) {
         </div>
     `
 }
+function findBorder(border) {
+  let borderCountry = ''
+  border.forEach((bor) => {
+    borderCountry += findCountryName(bor)
+  })
+}
+function findCountryName(alphaCode) {
+  console.log(countries)
+  console.log(countries.find((country) => country.alpha3code == alphaCode))
+}
+// search Input
+search.addEventListener('input', findCountry)
+function findCountry() {
+  const inputValue = search.value.toLowerCase()
+  const pages = document.querySelectorAll('.page')
+  pages.forEach((ele) => {
+    if (ele.innerText.toLowerCase().indexOf(inputValue) >=0) {
+      ele.style.display = 'flex'
+    } else {
+      ele.style.display = 'none'
+    }
+  })
+}
+// filter by continent
+const menu = document.querySelector('.dropdown-menu')
+const continents =document.querySelectorAll('.dropdown-item')
+continents.forEach((menu) => {
+  menu.addEventListener('click', () => {
+    const value = menu.innerText
+    const countryRegion = document.querySelectorAll('.page')
+    countryRegion.forEach((region) => {
+      if (region.innerText.includes(value)) {
+        region.style.display = 'flex'
+      } else {
+        region.style.display = 'none'
+      }
+    })
+  })
+})
