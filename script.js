@@ -1,15 +1,16 @@
+const rootElm = document.querySelector("#root");
 const url = `https://restcountries.eu/rest/v2/all`;
+
 fetch (url)
   .then (response => response.json ())
   .then (data => makePageForCountries (data))
   .catch (error => console.log (error));
-const rootElm = document.querySelector("#root");
 
 function makePageForCountries (countriesData) {
   const countries = countriesData;
   for (let i = 0; i < countries.length; i++) {
     let divResponsive = document.createElement("div");
-    divResponsive.className += "col-sm-12 col-md-4 col-lg-3 mb-sm-2 mb-md-3 mb-lg-2 p-2";
+    divResponsive.className += "col-sm-12 col-md-4 col-lg-3 mb-sm-2 mb-md-2 mt-md-3 mb-lg-3 mt-lg-3 p-2";
     let countryCard = document.createElement ('div');
     countryCard.className = 'card';
     let flag = document.createElement ('img');

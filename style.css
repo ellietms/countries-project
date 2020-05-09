@@ -1,15 +1,5 @@
-.font{
-    font-size: 20px;
-    font-weight: 100px;
-    color: black;
-}
-
-.navbar{
-    background-color: white;
-}
-
 body{
-    background-color:rgba(238, 232, 232, 0.979);
+    background-color:white;
 }
 
 .card {
@@ -25,25 +15,3 @@ body{
     overflow: scroll;
     size: 1rem;
 }
-/* .search-box i {
-    position: absolute;
-  } */
-  /* .icon {
-    margin: 15px;
-    min-width: 50px;
-  }
-  .input-field {
-    width: 30%;
-    padding: 10px;
-    text-align: left;
-    margin-left: 10px;
-    border-radius: 3px;
-  }
-.region{
-   margin-left: 50%;
-   padding:10px 10px;
-   font-size:large;
-} */
-  /* .filter{
-      display: none;
-  } */
