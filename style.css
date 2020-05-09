@@ -12,6 +12,5 @@ body{
 
 .card-text{
     max-height: 250px;
-    overflow: scroll;
     size: 1rem;
 }
