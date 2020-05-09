@@ -152,3 +152,12 @@ const backButton = document.querySelector('#backButton')
   document.querySelector('#show').style.visibility = "block"
   getData()
 })
+
+//mode button
+const modeButton = document.querySelector("#mode")
+modeButton.addEventListener("click",changeMode)
+function changeMode(){
+  const navbar = document.querySelector("#navbar")
+  navbar.style.backgroundColor = "	#001a1a"
+  document.body.style.backgroundColor = "#001a1a";
+}
