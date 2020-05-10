@@ -106,3 +106,9 @@ body {
 .borders{
     width: 1%;
 }
+.moon{
+    font-size:20px; 
+    @media(max-with : 800px){
+        font-size:7px;
+    }
+}
