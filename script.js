@@ -140,7 +140,11 @@ continents.forEach((menu) => {
             countryRegion.forEach((region) => {
                 if (region.innerText.includes(value)) {
                     region.style.display = 'block'
-                } else {
+                }
+                else if (value == "All Region"){
+                  region.style.display = 'block'
+                }
+                 else {
                     region.style.display = 'none'
                 }
             })
