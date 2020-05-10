@@ -2,32 +2,34 @@ const search = document.querySelector('#searchInput')
 const rootElm = document.querySelector('#root')
 const backButton = document.querySelector('#backButton')
 const url = `https://restcountries.eu/rest/v2/all`
-let modeIdentifier = true
+const modeSwitch = document.querySelector('#mode')
+const modeName = document.querySelector('#mode-name')
+const alphaCodes = []
 window.onload = setup
 function setup() {
-    getData()
+    getCountriesData()
 }
-function getData() {
+function getCountriesData() {
     fetch(url)
         .then((response) => response.json())
         .then((data) => makePageForCountries(data))
         .catch((error) => console.log(error))
 }
-let countries
 function makePageForCountries(countriesData) {
-    countries = countriesData
+    const countries = countriesData
     for (let i = 0; i < countries.length; i++) {
         let divResponsive = document.createElement('div')
         divResponsive.className +=
             'col-sm-12 col-md-4 col-lg-3 mb-sm-2 mb-md-2 mt-md-3 mb-lg-3 mt-lg-3 p-2 page'
         let countryCard = document.createElement('div')
         countryCard.className = 'card'
+        countryCard.addEventListener('click', () => {
+            displayInfo(countries[i])
+        })
+        getAlphaCodes(countries[i])
         let flag = document.createElement('img')
         flag.className = 'card-img-top border border-secondary'
         flag.src = countries[i].flag
-        countryCard.addEventListener('click', () => {
-          displayInfo(countries[i])
-      })
         let countriesInfo = document.createElement('div')
         countriesInfo.className = 'card-body'
         let countryName = document.createElement('h5')
@@ -35,7 +37,8 @@ function makePageForCountries(countriesData) {
         countryName.innerHTML = countries[i].name
         let population = document.createElement('p')
         population.className = 'card-text'
-        population.innerHTML = 'Population: ' + countries[i].population
+        population.innerHTML =
+            'Population: ' + formatNumber(countries[i].population)
         let region = document.createElement('p')
         region.className = 'card-text'
         region.innerHTML = 'Region: ' + countries[i].region
@@ -53,11 +56,16 @@ function makePageForCountries(countriesData) {
         rootElm.appendChild(divResponsive)
     }
 }
+const formatNumber = (num) =>
+    num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+function getAlphaCodes(country) {
+    alphaCodes.push({ name: country.name, code: country.alpha3Code })
+}
 function displayInfo(country) {
     document.querySelector('#show').style.display = 'none'
     document.querySelector('#find-countries').style.display = 'none'
     backButton.style.display = 'block'
-    document.querySelector('#info').style.display = "block"
+    document.querySelector('#info ').style.display = 'block '
     const countryInfo = document.querySelector('#info')
     const infoBody = countryInfo.querySelector('#info-body')
     const countryImage = countryInfo.querySelector('img')
@@ -67,8 +75,8 @@ function displayInfo(country) {
         <h2 class="mt-sm-3">
         ${country.name}
         </h2>
-        <div class="mt-sm-5 d-flex m-auto justify-content-center">
-        <div class="mr-4 pr-2">
+        <div class="mt-sm-5 d-flex justify-content-center">
+        <div class="mr-1 pr-2" id="country-details">
         <p>
             <strong>Native Name:</strong>
             ${country.nativeName}
@@ -89,33 +97,50 @@ function displayInfo(country) {
             <strong>Capital:</strong>
             ${country.capital}
         </p>
-        <div class = "d-flex m-auto">
-        <p class="d-flex"> <strong>Border Countries:</strong> <p>
-         ${findBorder(country.borders)}
         </div>
-        </div>
-        <div class = "mr-1">
-        <p>
-            <strong>Top Level Domain:</strong>
+        <div class = " d-flex flex-column" >
+        <p class = "d-flex">
+            <strong id="details-right">Top Level Domain:</strong>
             ${country.topLevelDomain[0]}
         </p>
-        <p>
-            <strong>Currencies:</strong>
+        <p class = " d-flex">
+            <strong id="details-right">Currencies:</strong>
             ${country.currencies.map((currency) => currency.code)}
         </p>
-        <p>
-            <strong>Languages:</strong>
+        <p class = " d-flex">
+            <strong id="details-right">Languages:</strong>
             ${country.languages.map((language) => language.name)}
         </p>
         </div>
         </div>
+        <div class = "mb-sm-1">
+        <p class="d-flex"> <strong>Border Countries:</strong> </p>
+        <p class="d-inline-flex borders"> ${getBorderName(country.borders)} </p>
+        </div>
     `
 }
-function findBorder(border) {
-    //  let borderCountry = ''
-    //border.forEach((bor) => {
-    //borderCountry += findCountryName(bor)
-    //})
+//get border countries
+function getCountryName(countryCode) {
+    let name = ''
+    alphaCodes.forEach((country) => {
+        if (country.code.toLowerCase() === countryCode.toLowerCase()) {
+            name = country.name
+            return name
+        } else return
+    })
+    return name
+}
+function getBorderName(borderCodes) {
+    let name = ''
+    nameArr = []
+    borderCodes.forEach((code) => {
+        name = getCountryName(code)
+        nameArr.push(`<button type="button" class="d-flex justify-content-start mr-md-2 btn btn-outline-secondary">${name}</button>`)
+    })
+    if (nameArr.length === 0) {
+        return "No Border"
+    }
+    return nameArr.join('')
 }
 // search Input
 search.addEventListener('input', findCountry)
@@ -140,11 +165,11 @@ continents.forEach((menu) => {
             countryRegion.forEach((region) => {
                 if (region.innerText.includes(value)) {
                     region.style.display = 'block'
-                }
-                else if (value == "All Region"){
+                } 
+                else if (value == "All"){
                   region.style.display = 'block'
                 }
-                 else {
+                else {
                     region.style.display = 'none'
                 }
             })
@@ -156,16 +181,19 @@ backButton.addEventListener('click', () => {
         document.querySelector('#info').style.display = 'none'
         document.querySelector('#find-countries').style.display = 'block'
         document.querySelector('#show').style.display = 'block'
-        window.onload = setup
+        getCountriesData()
     })
-
-    //mode button
-const modeButton = document.querySelector('#mode')
-modeButton.addEventListener('click', changeMode)
-function changeMode() {
-    
-    
-    // navbar.style.backgroundColor = "#000035"
-    // navbar.style.color = "white"
-    // document.body.classList.toggle(".bodyDark");
+    //mode Switch
+modeSwitch.addEventListener('click', toggleMode)
+function toggleMode() {
+    changeMode(modeName.textContent === 'Dark Mode')
+}
+function changeMode(condition) {
+    if (condition) {
+        document.documentElement.className = 'mode-dark'
+        modeName.textContent = 'Light Mode'
+    } else {
+        document.documentElement.className = 'mode-light'
+        modeName.textContent = 'Dark Mode'
+    }
 }
