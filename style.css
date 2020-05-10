@@ -6,7 +6,7 @@ html{
 }
 
 .navbar{
-    background-color: rgb(173, 184, 187);
+    background-color:	#F5F5F5;
 }
 .card {
     height:500px;
@@ -35,4 +35,9 @@ html{
 .btn{
    margin-top: 5%;
     width: 10%;
+}
+.bodyDark{
+    background-color: #000035;
+    color: white;
+    
 }

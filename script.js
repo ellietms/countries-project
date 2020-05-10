@@ -25,9 +25,9 @@ function makePageForCountries(countriesData) {
         let flag = document.createElement('img')
         flag.className = 'card-img-top border border-secondary'
         flag.src = countries[i].flag
-        flag.addEventListener('click', () => {
-            displayInfo(countries[i])
-        })
+        countryCard.addEventListener('click', () => {
+          displayInfo(countries[i])
+      })
         let countriesInfo = document.createElement('div')
         countriesInfo.className = 'card-body'
         let countryName = document.createElement('h5')
@@ -57,6 +57,7 @@ function displayInfo(country) {
     document.querySelector('#show').style.display = 'none'
     document.querySelector('#find-countries').style.display = 'none'
     backButton.style.display = 'block'
+    document.querySelector('#info').style.display = "block"
     const countryInfo = document.querySelector('#info')
     const infoBody = countryInfo.querySelector('#info-body')
     const countryImage = countryInfo.querySelector('img')
@@ -151,13 +152,16 @@ backButton.addEventListener('click', () => {
         document.querySelector('#info').style.display = 'none'
         document.querySelector('#find-countries').style.display = 'block'
         document.querySelector('#show').style.display = 'block'
-        getData()
+        window.onload = setup
     })
+
     //mode button
 const modeButton = document.querySelector('#mode')
 modeButton.addEventListener('click', changeMode)
 function changeMode() {
-    const navbar = document.querySelector("#navbar ")
-    navbar.style.backgroundColor = "#000035"
-    document.body.classList.toggle("html.dark");
+    
+    
+    // navbar.style.backgroundColor = "#000035"
+    // navbar.style.color = "white"
+    // document.body.classList.toggle(".bodyDark");
 }
