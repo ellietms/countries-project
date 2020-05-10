@@ -69,14 +69,14 @@ function displayInfo(country) {
     const countryInfo = document.querySelector('#info')
     const infoBody = countryInfo.querySelector('#info-body')
     const countryImage = countryInfo.querySelector('img')
-    countryImage.className = 'countryImg'
+    countryImage.className = 'countryImg '
     countryImage.src = country.flag
     infoBody.innerHTML = `
         <h1 class="mt-sm-3">
         ${country.name}
         </h1>
-        <div class="mt-sm-5 d-flex justify-content-center">
-        <div class="mr-1 pr-2" id="country-details">
+        <div class="mt-sm-5 d-flex ">
+        <div class="mr-1" id="country-details">
         <p>
             <strong>Native Name:</strong>
             ${country.nativeName}
