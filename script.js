@@ -1,5 +1,6 @@
 const search = document.querySelector('#searchInput')
 const rootElm = document.querySelector('#root')
+const backButton = document.querySelector('#backButton')
 const url = `https://restcountries.eu/rest/v2/all`
 window.onload = setup
 function setup() {
@@ -21,7 +22,7 @@ function makePageForCountries(countriesData) {
     let countryCard = document.createElement('div')
     countryCard.className = 'card'
     let flag = document.createElement('img')
-    flag.className = 'card-img-top'
+    flag.className = 'card-img-top border border-secondary'
     flag.src = countries[i].flag
     flag.addEventListener('click', () => {
       displayInfo(countries[i])
@@ -40,6 +41,7 @@ function makePageForCountries(countriesData) {
     let capital = document.createElement('p')
     capital.className = 'card-text'
     capital.innerHTML = 'Capital: ' + countries[i].capital
+     backButton.style.display = "none"
     countryCard.appendChild(flag)
     countriesInfo.appendChild(countryName)
     countriesInfo.appendChild(population)
@@ -50,8 +52,10 @@ function makePageForCountries(countriesData) {
     rootElm.appendChild(divResponsive)
   }
 }
+
 function displayInfo(country) {
   document.querySelector('#show').style.display = "none"
+  backButton.style.display = "block"
   const countryInfo = document.querySelector('#info')
   const infoBody = countryInfo.querySelector('#info-body')
   const countryImage = countryInfo.querySelector('img')
@@ -62,7 +66,7 @@ function displayInfo(country) {
         ${country.name}
         </h2>
         <div class="mt-sm-5 d-flex m-auto justify-content-center">
-        <div>
+        <div class="mr-4 pr-2">
         <p>
             <strong>Native Name:</strong>
             ${country.nativeName}
@@ -88,7 +92,7 @@ function displayInfo(country) {
          ${findBorder(country.borders)}
         </div>
         </div>
-        <div>
+        <div class = "mr-1">
         <p>
             <strong>Top Level Domain:</strong>
             ${country.topLevelDomain[0]}
@@ -104,17 +108,15 @@ function displayInfo(country) {
         </div>
         </div>
     `
-}
+
+  }
 function findBorder(border) {
   let borderCountry = ''
   border.forEach((bor) => {
     borderCountry += findCountryName(bor)
   })
 }
-function findCountryName(alphaCode) {
-  //console.log(countries)
-  // console.log(countries.find((country) => country.alpha3code == alphaCode))
-}
+
 // search Input
 search.addEventListener('input', findCountry)
 function findCountry() {
@@ -144,8 +146,8 @@ continents.forEach((menu) => {
     })
   })
 })
+
 // back button
-const backButton = document.querySelector('#backButton')
  backButton.addEventListener('click', () => {
   backButton.style.display = 'none'
   document.querySelector('#info').style.display = 'none'
@@ -153,11 +155,16 @@ const backButton = document.querySelector('#backButton')
   getData()
 })
 
+
 //mode button
 const modeButton = document.querySelector("#mode")
 modeButton.addEventListener("click",changeMode)
+
 function changeMode(){
+  if(count == 1){
   const navbar = document.querySelector("#navbar")
-  navbar.style.backgroundColor = "	#001a1a"
-  document.body.style.backgroundColor = "#001a1a";
+  navbar.style.backgroundColor = "#001a1a"
+  count = 0;
+}
+  
 }

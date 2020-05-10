@@ -1,8 +1,12 @@
 body{
     background-color:white;
 }
+html{
+ height: 100%;
+}
+
 .navbar{
-    background-color: lightgray;
+    background-color: rgb(173, 184, 187);
 }
 .card {
     height:500px;
@@ -20,10 +24,10 @@ body{
     margin-top:5%;
 }
 .image-info{
-    margin-right:15%;
+    margin-right:10%;
 }
 .countryImg{
-    max-height: 250px;
+    max-height: 350px;
     width: 100%;
     margin-top: 5%;
     border: 1px solid black;
