@@ -32,8 +32,8 @@ function makePageForCountries(countriesData) {
         flag.src = countries[i].flag
         let countriesInfo = document.createElement('div')
         countriesInfo.className = 'card-body'
-        let countryName = document.createElement('h5')
-        countryName.className = 'card-title'
+        let countryName = document.createElement('p')
+        countryName.className = 'card-title font-weight-bold'
         countryName.innerHTML = countries[i].name
         let population = document.createElement('p')
         population.className = 'card-text'
@@ -148,7 +148,7 @@ function findCountry() {
     const inputValue = search.value.toLowerCase()
     const pages = document.querySelectorAll('.page')
     pages.forEach((ele) => {
-        if (ele.innerText.toLowerCase().indexOf(inputValue) > -1) {
+        if (ele.innerText.toLowerCase().indexOf(inputValue) >= 0) {
             ele.style.display = 'block'
         } else {
             ele.style.display = 'none'
