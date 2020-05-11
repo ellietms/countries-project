@@ -76,7 +76,7 @@ function displayInfo(country) {
         ${country.name}
         </h5>
         <div class="mt-sm-5 d-flex ">
-        <div class="mr-1" id="country-details">
+        <div class="mr-1 country-details" id="country-details">
         <p>
             <strong>Native Name:</strong>
             ${country.nativeName}
