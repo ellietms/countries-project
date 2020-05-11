@@ -88,6 +88,7 @@ body {
     max-height: 350px;
     width: 100%;
     margin-top: 5%;
+    border: 1px solid black;
 }
 .btn {
     margin-top: 5%;
