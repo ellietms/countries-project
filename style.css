@@ -104,10 +104,6 @@ body {
     margin-left: 5%;
 }
 
-.info-body{
-    width:50%;
-}
-
 .borders{
     width: 1%;
 }
@@ -130,9 +126,5 @@ a#mode-name:hover{
     .moon{
         font-size: 7px;
     }
-    .info-body{
-        width: 100%;
-    }
-
 }
 
