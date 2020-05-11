@@ -119,12 +119,4 @@ a#mode-name:hover{
     background-color: rgb(230, 181, 174);
     TEXT-DECORATION: none
 }
-@media(max-width:900px){
-    a#mode-name{
-        font-size: 8px;
-    }
-    .moon{
-        font-size: 7px;
-    }
-}
 
