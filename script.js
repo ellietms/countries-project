@@ -4,12 +4,12 @@ const backButton = document.querySelector("#backButton");
 const url = `https://restcountries.eu/rest/v2/all`;
 const modeSwitch = document.querySelector("#mode");
 const modeName = document.querySelector(".modeName");
-const alphaCodes = [];
 
 const formatNumber = (num) =>
   num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
  
-  // setup 
+
+// setup 
 window.onload = setup;
 function setup() {
   getCountriesData();
@@ -21,6 +21,7 @@ function getCountriesData() {
     .then((data) => makePageForCountries(data))
     .catch((error) => console.log(error));
 }
+
 
 // make main page
 function makePageForCountries(countries) {
@@ -141,6 +142,7 @@ function findCountry() {
   });
 }
 
+
 // filter by continent
 const menu = document.querySelector(".dropdown-menu");
 const continents = document.querySelectorAll(".dropdown-item");
@@ -159,6 +161,7 @@ continents.forEach((menu) => {
     });
   });
 });
+
 
 //mode Switch
 modeSwitch.addEventListener("click", toggleMode);
@@ -186,21 +189,13 @@ backButton.addEventListener("click", () => {
 });
 
 
+
 //get border countries
+const alphaCodes = [];
 function getAlphaCodes(country) {
-  alphaCodes.push({ name: country.name, code: country.alpha3Code });
+  alphaCodes.push({ name: country.name, alphaCode: country.alpha3Code });
 }
 
-function getCountryName(countryCode) {
-  let name = "";
-  alphaCodes.forEach((country) => {
-    if (country.code.toLowerCase() === countryCode.toLowerCase()) {
-      name = country.name;
-      return name;
-    } else return;
-  });
-  return name;
-}
 function getBorderName(borderCodes) {
   let name = "";
   nameArr = [];
@@ -214,4 +209,15 @@ function getBorderName(borderCodes) {
    return "NO BORDERS"
   }
   return nameArr.join("");
+}
+
+function getCountryName(countryCode) {
+  let name = "";
+  alphaCodes.forEach((element) => {
+    if (element.alphaCode.toLowerCase() === countryCode.toLowerCase()) {
+      name = country.name;
+      return name;
+    } else return;
+  });
+  return name;
 }
