@@ -3,7 +3,7 @@ const rootElm = document.querySelector("#root");
 const backButton = document.querySelector("#backButton");
 const url = `https://restcountries.eu/rest/v2/all`;
 const modeSwitch = document.querySelector("#mode");
-const modeName = document.querySelector(".mode-name");
+const modeName = document.querySelector(".modeName");
 const alphaCodes = [];
 window.onload = setup;
 function setup() {
