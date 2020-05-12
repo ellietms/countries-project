@@ -8,48 +8,47 @@ body {
 .mode-dark {
     --primary-color: hsl(0, 0%, 100%);
     --secondary-color: hsl(207, 26%, 17%);
-    --bg-color: hsl(209, 23%, 22%);
+    --bg-color: hsl(180, 1%, 22%);
     --placeholder-color: hsl(0, 0%, 98%);
+    
 }
 
 .mode-light {
     --primary-color: hsl(207, 26%, 17%);
     --secondary-color: hsl(0, 0%, 98%);
     --bg-color: hsl(0, 0%, 100%);
-    --placeholder-color: hsl(0, 0%, 52%);
-}
-
-#navbar {
-    background-color: var(--bg-color)!important;
-}
-
-.form-inline span {
-    outline: none!important;
-    background-color: var(--bg-color)!important;
-}
-
-.form-inline input {
-    outline: none!important;
-    color: var(--primary-color)!important;
-    background-color: var(--bg-color)!important;
-}
-
-#navbar a {
-    color: var(--primary-color);
-}
-
-#mode-name {
-    color: var(--primary-color) !important;
-}
-
-#navbarDropdownMenuLink {
-    color: var(--primary-color)!important;
-    background-color: var(--bg-color)!important;
+    --placeholder-color: hsl(0, 44%, 95%);
 }
 
 .navbar {
-    color: var(--primary-color)!important;
-    background-color: var(--secondary-color)!important;
+    background-color: var(--bg-color);
+}
+
+.form-inline span {
+    outline: none;
+    background-color: var(--bg-color);
+}
+
+.form-inline input {
+    outline: none;
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+}
+
+.navLink {
+    color:var(--primary-color);
+}
+
+#mode-name {
+    color: var(--primary-color);
+}
+
+.navbarDropdown{
+    color: var(--primary-color);
+}
+
+.navbar {
+    background-color: var(--secondary-color);
 }
 
 .dropdown-item {
@@ -61,8 +60,8 @@ body {
     background-color: var(--bg-color);
 }
 .card {
-    color: var(--primary-color)!important;
-    background-color: var(--bg-color)!important;
+    color: var(--primary-color);
+    background-color: var(--bg-color);
 }
 .card-body{
     border: 1px solid black;
@@ -81,7 +80,7 @@ body {
 }
 .image-info {
     /* margin-right: 10%; */
-    margin-left: 0!important;
+    margin-left: 0;
 }
 .countryImg {
     width: 100%;
@@ -94,11 +93,11 @@ body {
 }
 .country-details {
     margin-left: 2%;
-    margin-right: 20%!important;
-    padding-right: 0!important;
+    margin-right: 20%;
+    padding-right: 0;
 }
 .details {
-    margin-top: 0!important;
+    margin-top: 0;
 }
 
 .info{
@@ -117,7 +116,7 @@ a#mode-name{
 }
 
 a#mode-name:hover{
-    background-color: rgb(230, 181, 174);
-    TEXT-DECORATION: none
+    TEXT-DECORATION: none ;
+    color: purple;
 }
 

@@ -3,7 +3,7 @@ const rootElm = document.querySelector("#root");
 const backButton = document.querySelector("#backButton");
 const url = `https://restcountries.eu/rest/v2/all`;
 const modeSwitch = document.querySelector("#mode");
-const modeName = document.querySelector("#mode-name");
+const modeName = document.querySelector(".mode-name");
 const alphaCodes = [];
 window.onload = setup;
 function setup() {
@@ -195,7 +195,7 @@ function toggleMode() {
 }
 function changeMode(condition) {
   if (condition) {
-    document.documentElement.className = "mode-dark";
+    document.documentElement.className = "mode-dark navLink navbarDropdown";
     modeName.textContent = "Light Mode";
   } else {
     document.documentElement.className = "mode-light";
