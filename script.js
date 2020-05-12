@@ -113,7 +113,7 @@ function displayInfo(country) {
         </p>
         </div>
         </div>
-        <div class = "mb-sm-1 d-flex mr-sm-5">
+        <div class = "mb-sm-1 d-flex mr-sm-5 borderName">
         <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
         <p class="d-inline-flex"> ${getBorderName(country.borders)} </p>
         </div>
@@ -141,7 +141,7 @@ function getBorderName(borderCodes) {
     );
   });
   if (nameArr.length === 0) {
-    return "No Border";
+   return "NO BORDERS"
   }
   return nameArr.join("");
 }

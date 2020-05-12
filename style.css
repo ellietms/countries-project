@@ -106,10 +106,11 @@ body {
     margin-left: 5%;
 }
 
-.borders{
-    width:max-content;
-    padding-top: 30%;
-}
+ .borders{
+   margin-top: auto;
+   width: max-content;
+   margin-bottom: 5%;
+} 
 .moon{
     font-size:20px;
     color: var(--moon-color);
