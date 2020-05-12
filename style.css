@@ -55,7 +55,7 @@ body {
     color: var(--primary-color);
     background-color: var(--bg-color);
 }
-#backButton {
+.backButton {
     color: var(--primary-color);
     background-color: var(--bg-color);
 }
@@ -79,7 +79,6 @@ body {
     margin-top: 5%;
 }
 .image-info {
-    /* margin-right: 10%; */
     margin-left: 0;
 }
 .countryImg {
