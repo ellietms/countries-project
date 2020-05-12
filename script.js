@@ -5,16 +5,24 @@ const url = `https://restcountries.eu/rest/v2/all`;
 const modeSwitch = document.querySelector("#mode");
 const modeName = document.querySelector(".modeName");
 const alphaCodes = [];
+
+const formatNumber = (num) =>
+  num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+ 
+  // setup 
 window.onload = setup;
 function setup() {
   getCountriesData();
 }
+
 function getCountriesData() {
   fetch(url)
     .then((response) => response.json())
     .then((data) => makePageForCountries(data))
     .catch((error) => console.log(error));
 }
+
+// make main page
 function makePageForCountries(countries) {
   for (let i = 0; i < countries.length; i++) {
     let divResponsive = document.createElement("div");
@@ -55,11 +63,9 @@ function makePageForCountries(countries) {
     rootElm.appendChild(divResponsive);
   }
 }
-const formatNumber = (num) =>
-  num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-function getAlphaCodes(country) {
-  alphaCodes.push({ name: country.name, code: country.alpha3Code });
-}
+
+
+
 // make the page Info for each country
 function displayInfo(country) {
   document.querySelector("#show").style.display = "none";
@@ -120,31 +126,6 @@ function displayInfo(country) {
     `;
 }
 
-//get border countries
-function getCountryName(countryCode) {
-  let name = "";
-  alphaCodes.forEach((country) => {
-    if (country.code.toLowerCase() === countryCode.toLowerCase()) {
-      name = country.name;
-      return name;
-    } else return;
-  });
-  return name;
-}
-function getBorderName(borderCodes) {
-  let name = "";
-  nameArr = [];
-  borderCodes.forEach((code) => {
-    name = getCountryName(code);
-    nameArr.push(
-      `<button type="button" class="d-flex justify-content-start mr-md-2 btn btn-outline-secondary">${name}</button>`
-    );
-  });
-  if (nameArr.length === 0) {
-   return "NO BORDERS"
-  }
-  return nameArr.join("");
-}
 
 // search Input
 search.addEventListener("input", findCountry);
@@ -179,15 +160,6 @@ continents.forEach((menu) => {
   });
 });
 
-// back button
-backButton.addEventListener("click", () => {
-  backButton.style.display = "none";
-  document.querySelector("#info").style.display = "none";
-  document.querySelector("#find-countries").style.display = "block";
-  document.querySelector("#show").style.display = "block";
-  getCountriesData();
-});
-
 //mode Switch
 modeSwitch.addEventListener("click", toggleMode);
 function toggleMode() {
@@ -201,4 +173,45 @@ function changeMode(condition) {
     document.documentElement.className = "mode-light";
     modeName.textContent = "Dark Mode";
   }
+}
+
+
+// back button
+backButton.addEventListener("click", () => {
+  backButton.style.display = "none";
+  document.querySelector("#info").style.display = "none";
+  document.querySelector("#find-countries").style.display = "block";
+  document.querySelector("#show").style.display = "block";
+  getCountriesData();
+});
+
+
+//get border countries
+function getAlphaCodes(country) {
+  alphaCodes.push({ name: country.name, code: country.alpha3Code });
+}
+
+function getCountryName(countryCode) {
+  let name = "";
+  alphaCodes.forEach((country) => {
+    if (country.code.toLowerCase() === countryCode.toLowerCase()) {
+      name = country.name;
+      return name;
+    } else return;
+  });
+  return name;
+}
+function getBorderName(borderCodes) {
+  let name = "";
+  nameArr = [];
+  borderCodes.forEach((code) => {
+    name = getCountryName(code);
+    nameArr.push(
+      `<button type="button" class="d-flex justify-content-start mr-md-2 btn btn-outline-secondary">${name}</button>`
+    );
+  });
+  if (nameArr.length === 0) {
+   return "NO BORDERS"
+  }
+  return nameArr.join("");
 }
