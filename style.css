@@ -10,6 +10,7 @@ body {
     --secondary-color: hsl(207, 26%, 17%);
     --bg-color: hsl(180, 1%, 22%);
     --placeholder-color: hsl(0, 0%, 98%);
+    --moon-color:white;
     
 }
 
@@ -18,6 +19,7 @@ body {
     --secondary-color: hsl(0, 0%, 98%);
     --bg-color: hsl(0, 0%, 100%);
     --placeholder-color: hsl(0, 44%, 95%);
+    --moon-color:black;
 }
 
 .navbar {
@@ -107,7 +109,8 @@ body {
     width: 1%;
 }
 .moon{
-    font-size:20px; 
+    font-size:20px;
+    color: var(--moon-color);
 }
 
 a#mode-name{
