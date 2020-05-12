@@ -114,8 +114,8 @@ function displayInfo(country) {
         </div>
         </div>
         <div class = "mb-sm-1 d-flex mr-sm-5">
-        <p class="d-flex mt-sm-2 mr-sm-2"> <strong>Border Countries:</strong> </p>
-        <p class="d-inline-flex borders"> ${getBorderName(country.borders)} </p>
+        <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
+        <p class="d-inline-flex"> ${getBorderName(country.borders)} </p>
         </div>
     `;
 }
