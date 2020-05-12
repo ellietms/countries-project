@@ -193,9 +193,19 @@ backButton.addEventListener("click", () => {
 //get border countries
 const alphaCodes = [];
 function getAlphaCodes(country) {
-  alphaCodes.push({ name: country.name, alphaCode: country.alpha3Code });
+  alphaCodes.push({ name: country.name, code: country.alpha3Code });
 }
 
+function getCountryName(countryCode) {
+  let name = "";
+  alphaCodes.forEach((country) => {
+    if (country.code.toLowerCase() === countryCode.toLowerCase()) {
+      name = country.name;
+      return name;
+    } else return;
+  });
+  return name;
+}
 function getBorderName(borderCodes) {
   let name = "";
   nameArr = [];
@@ -209,15 +219,4 @@ function getBorderName(borderCodes) {
    return "NO BORDERS"
   }
   return nameArr.join("");
-}
-
-function getCountryName(countryCode) {
-  let name = "";
-  alphaCodes.forEach((element) => {
-    if (element.alphaCode.toLowerCase() === countryCode.toLowerCase()) {
-      name = country.name;
-      return name;
-    } else return;
-  });
-  return name;
-}
+} 
