@@ -80,7 +80,7 @@ function displayInfo(country) {
   countryImage.className = "countryImg";
   countryImage.src = country.flag;
   infoBody.innerHTML = `
-        <h5 class="mt-xs-4 pt-sm-4 mt-sm-4 mt-md-5 mt-lg-5">
+        <h5 class="mt-xs-4 pt-sm-4 mt-sm-4 mt-md-3 mt-lg-3">
         ${country.name}
         </h5>
         <div class="mt-sm-5 d-flex justify-content-between">
