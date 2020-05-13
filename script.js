@@ -4,55 +4,58 @@ const backButton = document.querySelector("#backButton");
 const url = `https://restcountries.eu/rest/v2/all`;
 const modeSwitch = document.querySelector("#mode");
 const modeName = document.querySelector(".modeName");
-
 const formatNumber = (num) =>
   num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
  
-
 // setup 
 window.onload = setup;
 function setup() {
-  getCountriesData();
-}
-
-function getCountriesData() {
   fetch(url)
     .then((response) => response.json())
-    .then((data) => makePageForCountries(data))
+    .then((data) => 
+    makePageForCountries(data)
+    )
     .catch((error) => console.log(error));
+}
+
+//get border countries
+// alphaCodes is the array of objects of countries,each object is the name and alphaCode3 of each country
+const alphaCodes = [];
+function getAlphaCodes(country) {
+  alphaCodes.push({ name: country.name, code: country.alpha3Code });
 }
 
 
 // make main page
-function makePageForCountries(countries) {
-  for (let i = 0; i < countries.length; i++) {
+function makePageForCountries(data) {
+  for (let i = 0; i < data.length; i++) {
     let divResponsive = document.createElement("div");
     divResponsive.className +=
       "col-12 col-sm-12 col-md-4 col-lg-3 mb-sm-2 mb-md-2 mt-md-3 mb-lg-3 mt-lg-3 p-2 page";
     let countryCard = document.createElement("div");
-    countryCard.className = "card mt-4";
+    countryCard.className = "card mt-4 mx-auto";
     countryCard.addEventListener("click", () => {
-      displayInfo(countries[i]);
+      displayInfo(data[i]);
     });
-    getAlphaCodes(countries[i]);
+    getAlphaCodes(data[i]);
     let flag = document.createElement("img");
     flag.className = "card-img-top border border-secondary";
-    flag.src = countries[i].flag;
+    flag.src = data[i].flag;
     let countriesInfo = document.createElement("div");
     countriesInfo.className = "card-body";
     let countryName = document.createElement("p");
     countryName.className = "card-title font-weight-bold";
-    countryName.innerHTML = countries[i].name;
+    countryName.innerHTML = data[i].name;
     let population = document.createElement("p");
     population.className = "card-text";
     population.innerHTML =
-      "Population: " + formatNumber(countries[i].population);
+      "Population: " + formatNumber(data[i].population);
     let region = document.createElement("p");
     region.className = "card-text";
-    region.innerHTML = "Region: " + countries[i].region;
+    region.innerHTML = "Region: " + data[i].region;
     let capital = document.createElement("p");
     capital.className = "card-text";
-    capital.innerHTML = "Capital: " + countries[i].capital;
+    capital.innerHTML = "Capital: " + data[i].capital;
     backButton.style.display = "none";
     countryCard.appendChild(flag);
     countriesInfo.appendChild(countryName);
@@ -64,8 +67,6 @@ function makePageForCountries(countries) {
     rootElm.appendChild(divResponsive);
   }
 }
-
-
 
 // make the page Info for each country
 function displayInfo(country) {
@@ -122,7 +123,7 @@ function displayInfo(country) {
         </div>
         <div class = "mb-sm-1 d-flex mr-sm-5 borderName">
         <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
-        <p class="d-inline-flex"> ${getBorderName(country.borders)} </p>
+        <h5 class="d-inline-flex mt-lg-2"> ${getBorderName(country.borders)}</h5>
         </div>
     `;
 }
@@ -133,11 +134,11 @@ search.addEventListener("input", findCountry);
 function findCountry() {
   const inputValue = search.value.toLowerCase();
   const pages = document.querySelectorAll(".page");
-  pages.forEach((ele) => {
-    if (ele.innerText.toLowerCase().indexOf(inputValue) >= 0) {
-      ele.style.display = "block";
+  pages.forEach((element) => {
+    if (element.innerText.toLowerCase().includes(inputValue)) {
+      element.style.display = "block";
     } else {
-      ele.style.display = "none";
+      element.style.display = "none";
     }
   });
 }
@@ -190,12 +191,6 @@ backButton.addEventListener("click", () => {
 
 
 
-//get border countries
-const alphaCodes = [];
-function getAlphaCodes(country) {
-  alphaCodes.push({ name: country.name, code: country.alpha3Code });
-}
-
 function getCountryName(countryCode) {
   let name = "";
   alphaCodes.forEach((country) => {
@@ -214,9 +209,10 @@ function getBorderName(borderCodes) {
     nameArr.push(
       `<button type="button" class="d-flex justify-content-start mr-md-2 btn btn-outline-secondary">${name}</button>`
     );
+
   });
   if (nameArr.length === 0) {
-   return "NO BORDERS"
+    return "NO BORDERS";
   }
   return nameArr.join("");
 } 
