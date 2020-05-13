@@ -123,7 +123,7 @@ function displayInfo(country) {
         </div>
         <div class = "mb-sm-1 d-flex col-12 borderName">
         <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
-        <span class="d-inline-flex flex-md-row flex-sm-column"> ${getNameOfCountryBorders(country.borders)}</span>
+        <span class="d-inline-flex flex-md-row flex-xs-column"> ${getNameOfCountryBorders(country.borders)}</span>
         </div>
     `;
 }
@@ -207,7 +207,7 @@ function getNameOfCountryBorders(countryBorderCodes) {
     {return};
      })
     nameArr.push(
-      `<button type="button" class="d-flex mr-2 btn btn-outline-secondary"><p class="content pt-3">${nameOfCountry}</p></button>`
+      `<button type="button" class="d-flex mr-2 btn btn-outline-secondary"><p class="content pt-5">${nameOfCountry}</p></button>`
     );
   });
 
