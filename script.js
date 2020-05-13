@@ -168,7 +168,7 @@ continents.forEach((menu) => {
 
 
 //mode Switch
-modeMain.addEventListener("click", toggleMode);
+modeMain.addEventListener("click", changeMode);
 let conditionOfMode = (modeName.textContent === "Dark Mode");
 function changeMode(conditionOfMode) {
   if(conditionOfMode) {
