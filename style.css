@@ -136,7 +136,10 @@ body {
     text-decoration-line: inherit;
 }
 .content{
- font-size:10px;
- word-break: normal;
+    font-size: small;
+    font-weight: bold;
+    color: black;
+    width:fit-content;
+    overflow-x:hidden;
+     height: fit-content;
 }
-
