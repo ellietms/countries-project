@@ -38,6 +38,8 @@ function makePageForCountries(data) {
       displayInfo(data[i]);
     });
     getAlphaCodes(data[i]);
+    let imageContainer = document.createElement("div");
+    imageContainer.className = "imageContainer"
     let flag = document.createElement("img");
     flag.className = "card-img-top";
     flag.src = data[i].flag;
@@ -57,7 +59,8 @@ function makePageForCountries(data) {
     capital.className = "card-text";
     capital.innerHTML = "Capital: " + data[i].capital;
     backButton.style.display = "none";
-    countryCard.appendChild(flag);
+    imageContainer.appendChild(flag)
+    countryCard.appendChild(imageContainer);
     countriesInfo.appendChild(countryName);
     countriesInfo.appendChild(population);
     countriesInfo.appendChild(region);
@@ -123,7 +126,7 @@ function displayInfo(country) {
         </div>
         <div class = "mb-sm-1 col-12 d-flex flex-sm-column flex-md-row borderName">
         <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
-        <span class="d-inline-flex flex-md-row flex-xs-column"> ${getNameOfCountryBorders(country.borders)}</span>
+        <span class="d-inline-flex flex-md-row flex-xs-column" onclick=""> ${getNameOfCountryBorders(country.borders)}</span>
         </div>
     `;
 }
