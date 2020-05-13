@@ -9,6 +9,7 @@ const formatNumber = (num) =>
  
 // setup 
 window.onload = setup;
+let allData = null
 function setup() {
   fetch(url)
     .then((response) => response.json())
@@ -28,6 +29,7 @@ function getAlphaCodes(country) {
 
 // make main page
 function makePageForCountries(data) {
+  allData = data
   for (let i = 0; i < data.length; i++) {
     let divResponsive = document.createElement("div");
     divResponsive.className +=
@@ -126,7 +128,7 @@ function displayInfo(country) {
         </div>
         <div class = "mb-sm-1 col-12 d-flex flex-sm-column flex-md-row borderName">
         <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
-        <span class="d-inline-flex flex-md-row flex-xs-column" onclick=""> ${getNameOfCountryBorders(country.borders)}</span>
+        <span class="d-inline-flex flex-md-row flex-xs-column"> ${getNameOfCountryBorders(country)}</span>
         </div>
     `;
 }
@@ -150,7 +152,6 @@ function findCountry() {
 // filter by continent
 const menu = document.querySelector(".dropdown-menu");
 const continents = document.querySelectorAll(".dropdown-item");
-console.log(continents);
 // we can use foreach for nodeLists
 continents.forEach((menu) => {
   menu.addEventListener("click", () => {
@@ -197,26 +198,34 @@ backButton.addEventListener("click", () => {
 
 
 // country borders
-function getNameOfCountryBorders(countryBorderCodes) {
+function getNameOfCountryBorders(country) {
   let nameOfCountry = "";
   let nameArr = [];
+  countryBorderCodes = country.borders
   countryBorderCodes.forEach((borderCode) => {
     alphaCodes.forEach((element) => {
      if (element.alphaCode.toLowerCase() === borderCode.toLowerCase()) {
-      nameOfCountry = element.name;
-        return nameOfCountry;
+      nameArr.push(
+        `<button type="button" class="mr-2 btn btn-outline-secondary" 
+        onclick='showNewCountry("${element.name}")' >
+        <p class="content pt-1">${element.name}</p></button>`
+       );
       }
-       else
-    {return};
      })
-    nameArr.push(
-      `<button type="button" class="mr-2 btn btn-outline-secondary"><p class="content pt-1">${nameOfCountry}</p></button>`
-    );
   });
 
   if (nameArr.length === 0) {
     return "NO BORDERS";
   }
-
   return nameArr.join("");
 } 
+
+function showNewCountry(nameOfCountry){
+  newCountry = null
+   allData.forEach(element => {
+    if (element.name === nameOfCountry){
+      newCountry = element
+    } 
+  })
+  displayInfo(newCountry)
+}
