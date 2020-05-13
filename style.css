@@ -73,7 +73,7 @@ body {
 }
 @media(max-width:700px){
     .card:hover{
-        transform: scale(1.00);
+        transform: scale(1.01);
     }
 }
 .card-body{
