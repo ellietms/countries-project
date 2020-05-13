@@ -130,9 +130,12 @@ body {
     color:purple;
 }
 
- .modeName:hover{
+.modeName:hover{
    text-shadow: brown;
     color: red; 
     text-decoration-line: inherit;
+}
+.content{
+    overflow-x: scroll;
 }
 
