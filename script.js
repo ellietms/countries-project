@@ -168,8 +168,10 @@ continents.forEach((menu) => {
 
 
 //mode Switch
-modeMain.addEventListener("click", changeMode);
-let conditionOfMode = (modeName.textContent === "Dark Mode");
+modeMain.addEventListener("click",showMode);
+function showMode(){
+  changeMode(modeName.textContent == "Dark Mode");
+}
 function changeMode(conditionOfMode) {
   if(conditionOfMode) {
     document.documentElement.className = "mode-dark navLink navbarDropdown";

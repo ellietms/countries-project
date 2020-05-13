@@ -6,7 +6,7 @@ body {
 }
 
 .mode-dark {
-    --primary-color: hsl(0, 0%, 100%);
+    --primary-color: hsl(180, 33%, 99%);
     --secondary-color: hsl(207, 26%, 17%);
     --bg-color: hsl(180, 1%, 22%);
     --placeholder-color: hsl(0, 0%, 98%);
@@ -77,7 +77,7 @@ body {
     }
 }
 .card-body{
-    border: 1px solid black;
+    border: 1px solid white;
     max-height: 175px;
     height: fit-content;
 }
