@@ -205,7 +205,7 @@ function getNameOfCountryBorders(countryBorderCodes) {
     {return};
      })
     nameArr.push(
-      `<button type="button" class="d-flex justify-content-start mr-md-2 btn btn-outline-secondary">${nameOfCountry}</button>`
+      `<button type="button" class="d-flex justify-content-start mr-md-2 btn btn-outline-secondary" onclick="displayInfo">${nameOfCountry}</button>`
     );
   });
 
