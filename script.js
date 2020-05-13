@@ -121,7 +121,7 @@ function displayInfo(country) {
         </p>
         </div>
         </div>
-        <div class = "mb-sm-1 d-flex borderName">
+        <div class = "mb-sm-1 col-12 d-flex flex-sm-column flex-md-row borderName">
         <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
         <span class="d-inline-flex flex-md-row flex-xs-column"> ${getNameOfCountryBorders(country.borders)}</span>
         </div>
