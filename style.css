@@ -136,6 +136,6 @@ body {
     text-decoration-line: inherit;
 }
 .content{
-    overflow-x: scroll;
+    width: fit-content;
 }
 
