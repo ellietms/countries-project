@@ -31,7 +31,7 @@ function makePageForCountries(data) {
   for (let i = 0; i < data.length; i++) {
     let divResponsive = document.createElement("div");
     divResponsive.className +=
-      "col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 mb-sm-2 mb-md-2 mt-md-3 mb-lg-3 mt-lg-3 p-2 page";
+      "col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 mx-sm-3 mb-sm-2 mb-md-2 mt-md-3 mb-lg-3 mt-lg-3 p-2 page";
     let countryCard = document.createElement("div");
     countryCard.className = "card mt-4 mx-auto";
     countryCard.addEventListener("click", () => {
