@@ -39,7 +39,7 @@ function makePageForCountries(data) {
     });
     getAlphaCodes(data[i]);
     let flag = document.createElement("img");
-    flag.className = "card-img-top border border-secondary";
+    flag.className = "card-img-top";
     flag.src = data[i].flag;
     let countriesInfo = document.createElement("div");
     countriesInfo.className = "card-body";
