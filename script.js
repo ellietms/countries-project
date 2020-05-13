@@ -2,7 +2,7 @@ const search = document.querySelector("#searchInput");
 const rootElm = document.querySelector("#root");
 const backButton = document.querySelector("#backButton");
 const url = `https://restcountries.eu/rest/v2/all`;
-const modeSwitch = document.querySelector("#mode");
+const modeMain = document.querySelector("#modeMain");
 const modeName = document.querySelector(".modeName");
 const formatNumber = (num) =>
   num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -147,9 +147,12 @@ function findCountry() {
 // filter by continent
 const menu = document.querySelector(".dropdown-menu");
 const continents = document.querySelectorAll(".dropdown-item");
+console.log(continents);
+// we can use foreach for nodeLists
 continents.forEach((menu) => {
   menu.addEventListener("click", () => {
     const value = menu.innerText;
+    // NodeLists of the whole page,each nodeList is one country
     const countryRegion = document.querySelectorAll(".page");
     countryRegion.forEach((region) => {
       if (region.innerText.includes(value)) {
@@ -165,7 +168,7 @@ continents.forEach((menu) => {
 
 
 //mode Switch
-modeSwitch.addEventListener("click", toggleMode);
+modeMain.addEventListener("click", toggleMode);
 function toggleMode() {
   changeMode(modeName.textContent === "Dark Mode");
 }
