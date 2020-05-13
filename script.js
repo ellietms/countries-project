@@ -123,7 +123,7 @@ function displayInfo(country) {
         </div>
         <div class = "mb-sm-1 d-flex mr-sm-5 borderName">
         <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
-        <h5 class="d-inline-flex mt-lg-2"> ${getNameOfCountryBorders(country.borders)}</h5>
+        <h5 class="d-inline-flex mt-lg-2 w-100"> ${getNameOfCountryBorders(country.borders)}</h5>
         </div>
     `;
 }
@@ -189,7 +189,7 @@ backButton.addEventListener("click", () => {
   document.querySelector("#info").style.display = "none";
   document.querySelector("#find-countries").style.display = "block";
   document.querySelector("#show").style.display = "block";
-  getCountriesData();
+  setup();
 });
 
 
@@ -207,7 +207,7 @@ function getNameOfCountryBorders(countryBorderCodes) {
     {return};
      })
     nameArr.push(
-      `<button type="button" class="d-flex justify-content-start mr-md-2 btn btn-outline-secondary" onclick="displayInfo">${nameOfCountry}</button>`
+      `<button type="button" class="d-flex w-10 pt-3 justify-content-start mr-md-2 btn btn-outline-secondary countryBorders"><p class="content">${nameOfCountry}</p></button>`
     );
   });
 
