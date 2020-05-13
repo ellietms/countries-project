@@ -80,10 +80,10 @@ function displayInfo(country) {
   countryImage.className = "countryImg";
   countryImage.src = country.flag;
   infoBody.innerHTML = `
-        <h5 class="mt-sm-4 mt-md-5 mt-lg-5">
+        <h5 class="mt-xs-4 mt-sm-4 mt-md-5 mt-lg-5">
         ${country.name}
         </h5>
-        <div class="mt-sm-5 d-flex ">
+        <div class="mt-sm-5 d-flex justify-content-between">
         <div class="mr-1 country-details" id="country-details">
         <p>
             <strong>Native Name:</strong>
@@ -108,22 +108,22 @@ function displayInfo(country) {
         </div>
         <div class = " d-flex flex-column" >
         <p class = "d-flex">
-            <strong id="details-right">Top Level Domain:</strong>
+            <strong id="details-right" class="mr-1">Top Level Domain:</strong>
             ${country.topLevelDomain[0]}
         </p>
         <p class = " d-flex">
             <strong id="details-right">Currencies:</strong>
             ${country.currencies.map((currency) => currency.code)}
         </p>
-        <p class = " d-flex">
+        <p class = "d-flex">
             <strong id="details-right">Languages:</strong>
             ${country.languages.map((language) => language.name)}
         </p>
         </div>
         </div>
-        <div class = "mb-sm-1 d-flex mr-sm-5  borderName">
+        <div class = "mb-sm-1 d-flex col-12 borderName">
         <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
-        <h5 class="d-inline-flex mt-lg-2"> ${getNameOfCountryBorders(country.borders)}</h5>
+        <span class="d-inline-flex flex-md-row flex-sm-column"> ${getNameOfCountryBorders(country.borders)}</span>
         </div>
     `;
 }
@@ -207,7 +207,7 @@ function getNameOfCountryBorders(countryBorderCodes) {
     {return};
      })
     nameArr.push(
-      `<button type="button" class="d-flex flex-sm-column btn btn-outline-secondary"><p class="content">${nameOfCountry}</p></button>`
+      `<button type="button" class="d-flex mr-2 btn btn-outline-secondary"><p class="content pt-3">${nameOfCountry}</p></button>`
     );
   });
 
