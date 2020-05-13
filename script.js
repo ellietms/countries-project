@@ -84,7 +84,7 @@ function displayInfo(country) {
         ${country.name}
         </h5>
         <div class="mt-sm-5 d-flex justify-content-between">
-        <div class="mr-1 country-details" id="country-details">
+        <div class="mr-1 col-sm-6 country-details" id="country-details">
         <p>
             <strong>Native Name:</strong>
             ${country.nativeName}
@@ -106,7 +106,7 @@ function displayInfo(country) {
             ${country.capital}
         </p>
         </div>
-        <div class = " d-flex flex-column" >
+        <div class = " d-flex flex-column  col-sm-6" >
         <p class = "d-flex">
             <strong id="details-right" class="mr-1">Top Level Domain:</strong>
             ${country.topLevelDomain[0]}
@@ -117,11 +117,11 @@ function displayInfo(country) {
         </p>
         <p class = "d-flex">
             <strong id="details-right">Languages:</strong>
-            ${country.languages.map((language) => language.name)}
+            <p class="flex-sm-column">${country.languages.map((language) => language.name)}</p>
         </p>
         </div>
         </div>
-        <div class = "mb-sm-1 d-flex col-12 borderName">
+        <div class = "mb-sm-1 d-flex borderName">
         <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
         <span class="d-inline-flex flex-md-row flex-xs-column"> ${getNameOfCountryBorders(country.borders)}</span>
         </div>
@@ -207,7 +207,7 @@ function getNameOfCountryBorders(countryBorderCodes) {
     {return};
      })
     nameArr.push(
-      `<button type="button" class="d-flex mr-2 btn btn-outline-secondary"><p class="content pt-5">${nameOfCountry}</p></button>`
+      `<button type="button" class="d-flex mr-2 btn btn-outline-secondary"><p class="content pt-1">${nameOfCountry}</p></button>`
     );
   });
 
