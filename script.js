@@ -22,7 +22,7 @@ function setup() {
 // alphaCodes is the array of objects of countries,each object is the name and alphaCode3 of each country
 const alphaCodes = [];
 function getAlphaCodes(country) {
-  alphaCodes.push({ name: country.name, code: country.alpha3Code });
+  alphaCodes.push({ name: country.name, alphaCode: country.alpha3Code });
 }
 
 
@@ -123,7 +123,7 @@ function displayInfo(country) {
         </div>
         <div class = "mb-sm-1 d-flex mr-sm-5 borderName">
         <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
-        <h5 class="d-inline-flex mt-lg-2"> ${getBorderName(country.borders)}</h5>
+        <h5 class="d-inline-flex mt-lg-2"> ${getNameOfCountryBorders(country.borders)}</h5>
         </div>
     `;
 }
@@ -169,11 +169,9 @@ continents.forEach((menu) => {
 
 //mode Switch
 modeMain.addEventListener("click", toggleMode);
-function toggleMode() {
-  changeMode(modeName.textContent === "Dark Mode");
-}
-function changeMode(condition) {
-  if (condition) {
+let conditionOfMode = (modeName.textContent === "Dark Mode");
+function changeMode(conditionOfMode) {
+  if(conditionOfMode) {
     document.documentElement.className = "mode-dark navLink navbarDropdown";
     modeName.textContent = "Light Mode";
   } else {
@@ -193,29 +191,27 @@ backButton.addEventListener("click", () => {
 });
 
 
-
-function getCountryName(countryCode) {
-  let name = "";
-  alphaCodes.forEach((country) => {
-    if (country.code.toLowerCase() === countryCode.toLowerCase()) {
-      name = country.name;
-      return name;
-    } else return;
-  });
-  return name;
-}
-function getBorderName(borderCodes) {
-  let name = "";
-  nameArr = [];
-  borderCodes.forEach((code) => {
-    name = getCountryName(code);
+// country borders
+function getNameOfCountryBorders(countryBorderCodes) {
+  let nameOfCountry = "";
+  let nameArr = [];
+  countryBorderCodes.forEach((borderCode) => {
+    alphaCodes.forEach((element) => {
+     if (element.alphaCode.toLowerCase() === borderCode.toLowerCase()) {
+      nameOfCountry = element.name;
+        return nameOfCountry;
+      }
+       else
+    {return};
+     })
     nameArr.push(
-      `<button type="button" class="d-flex justify-content-start mr-md-2 btn btn-outline-secondary">${name}</button>`
+      `<button type="button" class="d-flex justify-content-start mr-md-2 btn btn-outline-secondary">${nameOfCountry}</button>`
     );
-
   });
+
   if (nameArr.length === 0) {
     return "NO BORDERS";
   }
+
   return nameArr.join("");
 } 
