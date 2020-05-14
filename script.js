@@ -33,7 +33,7 @@ function makePageForCountries(data) {
   for (let i = 0; i < data.length; i++) {
     let divResponsive = document.createElement("div");
     divResponsive.className +=
-      "col-xs-4 mr-xs-5 ml-xs-5 col-sm-9 mx-sm-auto col-md-6 col-lg-4  col-xl-3  mb-sm-2 mb-md-2 mt-md-3 mb-lg-3 mt-lg-3 p-2 page";
+      "col-xs-4 mr-xs-5 ml-xs-5 col-sm-9 mx-sm-auto col-md-6 col-lg-3 col-xl-3 mb-sm-2 mb-md-2 mt-md-3 mb-lg-3 mt-lg-3 p-2 page";
     let countryCard = document.createElement("div");
     countryCard.className = "card mt-4 mx-auto";
     countryCard.addEventListener("click", () => {
@@ -126,9 +126,9 @@ function displayInfo(country) {
         </p>
         </div>
         </div>
-        <div class = "mb-sm-1 col-12 d-flex flex-sm-column flex-md-row borderName">
-        <p class="d-flex mt-sm-2 mr-sm-2"> <strong class="borders">Border Countries:</strong> </p>
-        <span class="d-inline-flex flex-md-row flex-xs-column"> ${getNameOfCountryBorders(country)}</span>
+        <div class="col-12">
+        <p class="d-flex d-lg-inline-flex mr-lg-0 col-lg-4 mt-sm-2 mr-sm-2 mb-sm-0"> <strong class="borders">Border Countries:</strong> </p>
+        <span class="col-lg-6 mt-sm-1 mt-md-0 d-sm-flex flex-md-column flex-lg-row d-lg-inline-flex"> ${getNameOfCountryBorders(country)}</span>
         </div>
     `;
 }
