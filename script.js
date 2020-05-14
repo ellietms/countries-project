@@ -199,7 +199,6 @@ backButton.addEventListener("click", () => {
 
 // country borders
 function getNameOfCountryBorders(country) {
-  let nameOfCountry = "";
   let nameArr = [];
   countryBorderCodes = country.borders
   countryBorderCodes.forEach((borderCode) => {
