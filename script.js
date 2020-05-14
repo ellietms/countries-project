@@ -84,6 +84,7 @@ function displayInfo(country) {
   const countryImage = countryInfo.querySelector("img");
   countryImage.className = "countryImg";
   countryImage.src = country.flag;
+  let ex = getNameOfCountryBorders(country);
   infoBody.innerHTML = `
         <h5 class="mt-xs-4 pt-sm-4 mt-sm-4 mt-md-3 mt-lg-3">
         ${country.name}
@@ -128,7 +129,7 @@ function displayInfo(country) {
         </div>
         <div class="col-12">
         <p class="d-flex d-lg-inline-flex mr-lg-0 col-lg-4 mt-sm-2 mr-sm-2 mb-sm-0"> <strong class="borders">Border Countries:</strong> </p>
-        <span class="col-lg-6 mt-sm-1 mt-md-0 d-sm-flex flex-md-column flex-lg-row d-lg-inline-flex"> '${getNameOfCountryBorders(country)}'</span>
+        <span class="col-lg-6 mt-sm-1 mt-md-0 d-sm-flex flex-md-column flex-lg-row d-lg-inline-flex">${ex}</span>
         </div>
     `;
 }
@@ -193,7 +194,6 @@ backButton.addEventListener("click", () => {
   document.querySelector("#info").style.display = "none";
   document.querySelector("#find-countries").style.display = "block";
   document.querySelector("#show").style.display = "block";
-  setup();
 });
 
 
@@ -201,22 +201,21 @@ backButton.addEventListener("click", () => {
 function getNameOfCountryBorders(country) {
   let nameArr = [];
   countryBorderCodes = country.borders
-  countryBorderCodes.forEach((borderCode) => {
-    alphaCodes.forEach((element) => {
-     if (element.alphaCode.toLowerCase() === borderCode.toLowerCase()) {
+  alphaCodes.forEach((element) => {
+    if(countryBorderCodes.includes(element.alphaCode.toUpperCase())){
       nameArr.push(
         `<button type="button" class="mr-2 btn btn-outline-secondary" 
         onclick='showNewCountry("${element.name}")' >
         <p class="content pt-1">${element.name}</p></button>`
        );
-      }
-     })
-  });
+    }
+  })
 
   if (nameArr.length === 0) {
     return "NO BORDERS";
   }
-  return nameArr.join("");
+  join = nameArr.join("");
+  return join ;
 } 
 
 function showNewCountry(nameOfCountry){
@@ -226,5 +225,6 @@ function showNewCountry(nameOfCountry){
       newCountry = element
     } 
   })
+  
   displayInfo(newCountry)
 }
