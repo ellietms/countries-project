@@ -107,8 +107,9 @@ body {
 .countryImg {
     width: 100%;
     margin-top: 5%;
-    border: 1px solid black;
+    border: 1px solid darkblue;
     margin-right: 4%;
+    height: 370px;
 }
 .btn {
     margin-top: 5%;
