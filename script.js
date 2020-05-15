@@ -194,6 +194,7 @@ backButton.addEventListener("click", () => {
   document.querySelector("#info").style.display = "none";
   document.querySelector("#find-countries").style.display = "block";
   document.querySelector("#show").style.display = "block";
+
 });
 
 
