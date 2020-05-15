@@ -85,6 +85,9 @@ body {
         position: absolute;
         z-index: 100;
      }
+     .dropdown-toggle{
+         
+     }
 }
 .card-body{
     border: 1px solid white;
@@ -124,11 +127,6 @@ body {
     margin-left: 5%;
 }
 
- /* .borders{
-   margin-top: auto;
-   width: max-content;
-   margin-bottom: 5%;
-}  */
 .moon{
     font-size:20px;
     color: var(--moon-color);
